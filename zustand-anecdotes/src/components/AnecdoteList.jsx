@@ -1,9 +1,17 @@
-import { useAnecdoteActions, useAnecdotes } from "../store";
+import { useAnecdoteActions, useAnecdotes, useFilter } from "../store";
 
 const AnecdoteList = () => {
   const anecdotes = useAnecdotes();
   const { vote } = useAnecdoteActions();
-  const sortedAnecdotes = anecdotes.toSorted((a, b) => b.votes - a.votes);
+  const filter = useFilter();
+
+  const filteredAnecdotes = anecdotes.filter((anecdote) =>
+    anecdote.content.toLowerCase().includes(filter.toLowerCase()),
+  );
+
+  const sortedAnecdotes = filteredAnecdotes.toSorted(
+    (a, b) => b.votes - a.votes,
+  );
   return (
     <div>
       {sortedAnecdotes.map((anecdote) => (
