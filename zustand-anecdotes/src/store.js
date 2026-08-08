@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import anecdoteService from "./services/anecdotes";
-import anecdotes from "./services/anecdotes";
 
 const useAnecdoteStore = create((set, get) => ({
   anecdotes: [],
@@ -26,6 +25,14 @@ const useAnecdoteStore = create((set, get) => ({
           anecdote.id === id ? updated : anecdote,
         ),
       }));
+    },
+    remove: async (id) => {
+      const anecdote = get().anecdotes.find((anecdote) => anecdote.id === id);
+      await anecdoteService.remove(id);
+      set((state) => ({
+        anecdotes: state.anecdotes.filter((anecdote) => anecdote.id !== id),
+      }));
+      return anecdote;
     },
     setFilter: (value) => set(() => ({ filter: value })),
   },

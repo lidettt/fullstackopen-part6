@@ -3,7 +3,7 @@ import { useAnecdoteActions, useAnecdotes, useFilter } from "../store";
 
 const AnecdoteList = () => {
   const anecdotes = useAnecdotes();
-  const { vote } = useAnecdoteActions();
+  const { vote, remove } = useAnecdoteActions();
   const filter = useFilter();
   const { setNotification, clearNotification } = useNotificationActions();
 
@@ -30,6 +30,17 @@ const AnecdoteList = () => {
             >
               vote
             </button>
+            {anecdote.votes === 0 && (
+              <button
+                onClick={() => {
+                  remove(anecdote.id);
+                  setNotification(`You deleted '${anecdote.content}'`);
+                  setTimeout(() => clearNotification(), 5000);
+                }}
+              >
+                delete
+              </button>
+            )}
           </div>
         </div>
       ))}

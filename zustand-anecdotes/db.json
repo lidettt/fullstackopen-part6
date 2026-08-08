@@ -32,38 +32,13 @@
     },
     {
       "content": "new anecdote",
-      "votes": 0,
+      "votes": 1,
       "id": "V4J8YrdNIQc"
     },
     {
       "content": "create new anecdote successfully",
       "votes": 5,
       "id": "pZn_BLYgxU8"
-    },
-    {
-      "content": "another new anecdote",
-      "votes": 0,
-      "id": "-mv-_rryO0c"
-    },
-    {
-      "content": "test notification",
-      "votes": 0,
-      "id": "xAg5FqsWRNs"
-    },
-    {
-      "content": "notification",
-      "votes": 0,
-      "id": "ndwVWQ_wblQ"
-    },
-    {
-      "content": "test",
-      "votes": 0,
-      "id": "KsL6t9Ejzxk"
-    },
-    {
-      "content": "a new anecdote successfully",
-      "votes": 0,
-      "id": "qtLc_jFW5as"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
