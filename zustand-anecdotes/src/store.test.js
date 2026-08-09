@@ -53,3 +53,28 @@ describe("useSortedAnecdotes", () => {
     expect(result.current.map((a) => a.id)).toEqual([2, 3, 1]);
   });
 });
+
+describe("useSortedAnecdotes filtering", () => {
+  const anecdotes = [
+    { id: 1, content: "Want to finish soon", votes: 5 },
+    { id: 2, content: "Learning to test Zustand", votes: 10 },
+    { id: 3, content: "Learning Zustand", votes: 1 },
+  ];
+
+  it("returns only anecdotes matching the filter", () => {
+    useAnecdoteStore.setState({ anecdotes, filter: "learn" });
+
+    const { result } = renderHook(() => useSortedAnecdotes());
+
+    expect(result.current).toHaveLength(2);
+    expect(result.current.map((a) => a.id)).toEqual([2, 3]);
+  });
+
+  it("returns empty array when nothing matches", () => {
+    useAnecdoteStore.setState({ anecdotes, filter: "abc" });
+
+    const { result } = renderHook(() => useSortedAnecdotes());
+
+    expect(result.current).toHaveLength(0);
+  });
+});
