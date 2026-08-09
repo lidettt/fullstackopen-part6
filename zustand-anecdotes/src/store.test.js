@@ -12,8 +12,8 @@ vi.mock("./services/anecdotes", () => ({
 import anecdoteService from "./services/anecdotes";
 import useAnecdoteStore, {
   useAnecdotes,
-  useFilter,
   useAnecdoteActions,
+  useSortedAnecdotes,
 } from "./store";
 
 beforeEach(() => {
@@ -34,5 +34,22 @@ describe("useAnecdotesActions", () => {
 
     const { result: anecdoteResult } = renderHook(() => useAnecdotes());
     expect(anecdoteResult.current).toEqual(mockAnecdotes);
+  });
+});
+
+describe("useSortedAnecdotes", () => {
+  const anecdotes = [
+    { id: 1, content: "Low votes", votes: 1 },
+    { id: 2, content: "High votes", votes: 10 },
+    { id: 3, content: "Medium votes", votes: 5 },
+  ];
+
+  beforeEach(() => {
+    useAnecdoteStore.setState({ anecdotes, filter: "" });
+  });
+
+  it("returns anecdotes sorted by votes, highest first", () => {
+    const { result } = renderHook(() => useSortedAnecdotes());
+    expect(result.current.map((a) => a.id)).toEqual([2, 3, 1]);
   });
 });
