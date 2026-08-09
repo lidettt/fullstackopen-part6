@@ -1,19 +1,11 @@
 import { useNotificationActions } from "../notificationStore";
-import { useAnecdoteActions, useAnecdotes, useFilter } from "../store";
+import { useAnecdoteActions, useSortedAnecdotes } from "../store";
 
 const AnecdoteList = () => {
-  const anecdotes = useAnecdotes();
+  const sortedAnecdotes = useSortedAnecdotes();
   const { vote, remove } = useAnecdoteActions();
-  const filter = useFilter();
   const { setNotification, clearNotification } = useNotificationActions();
 
-  const filteredAnecdotes = anecdotes.filter((anecdote) =>
-    anecdote.content.toLowerCase().includes(filter.toLowerCase()),
-  );
-
-  const sortedAnecdotes = filteredAnecdotes.toSorted(
-    (a, b) => b.votes - a.votes,
-  );
   return (
     <div>
       {sortedAnecdotes.map((anecdote) => (
