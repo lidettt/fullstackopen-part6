@@ -44,6 +44,11 @@
       "content": "test notification",
       "votes": 1,
       "id": "kyUugK4"
+    },
+    {
+      "content": "final test",
+      "votes": 2,
+      "id": "U5ww0Yc"
     }
   ]
 }
