@@ -39,6 +39,11 @@
       "content": "another new anecdote",
       "votes": 1,
       "id": "ZlJ9pfW"
+    },
+    {
+      "content": "test notification",
+      "votes": 1,
+      "id": "kyUugK4"
     }
   ]
 }
